@@ -118,7 +118,7 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 		if is_banned(msg.from.id, tostring(target)) then
 			return 'You are banned.'
 		end
-		if data[tostring(target)]['settings']['lock_member'] == 'yes' and not is_owner2(msg.from.id, '136141698') then
+		if data[tostring(target)]['settings']['lock_member'] == 'yes' and not is_owner2(msg.from.id, '36088606') then
 			return 'Group is private.'
 		end
 		if is_admin1(msg) then
