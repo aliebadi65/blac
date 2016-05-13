@@ -208,7 +208,7 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 
 	if matches[1] == 'help' and msg.to.type == 'user' or matches[1] == 'pmhelp' and is_admin1(msg) and msg.to.type ~= 'user' then
       	savelog(msg.to.id, name_log.." ["..msg.from.id.."] used pm help")
-		text = "Welcome to Smart!\n\n>To get a new Smart group, contact a support group:\n https://telegram.me/joinchat/C2AZVz9e1oKPUz8OUpEUew\n\nFor more information, check out our channels:\n\n@smartgp \n\nUse #superhelp command to show bot commands!!\n\n#Thanks_for_using @Aliebadi5!"
+		text = "Welcome to Smart!\n\n>To get a new Smart group, contact a support group:\n https://telegram.me/joinchat/C2AZVz9e1oI_Dcw34YYSsQ\n\nFor more information, check out our channels:\n\n@smartgp \n\nUse #superhelp command to show bot commands!!\n\n#Thanks_for_using @Aliebadi5!"
      	return text
     end
 
