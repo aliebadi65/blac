@@ -1,7 +1,7 @@
 do
 
 function run(msg, matches)
-  return [[B L A C K +
+  return [[SMARTGP
 -----------------------------------
 رباتی جدید برای مدیریت گروه
 -----------------------------------
@@ -13,20 +13,20 @@ function run(msg, matches)
 -----------------------------------
 Bot number : +18432530615
 -----------------------------------
-Bot version : 6.7 ]]
+Bot version : 4.7 ]]
 end
 return {
   description = ".", 
-  usage = "use black command",
+  usage = "use smart command",
   patterns = {
-    "^/black$",
-    "^!black$",
-    "^%bLack$",
-    "^$black$",
-   "^#Black$",
-   "^#Black",
-   "^/black$",
-   "^#black$",
+    "^/smart$",
+    "^!smart$",
+    "^%smart$",
+    "^$smart$",
+   "^#Smart$",
+   "^#Smart",
+   "^/smart$",
+   "^#smart$",
 
   },
   run = run
