@@ -2,10 +2,10 @@ do
     
 function run(msg, matches)
   if matches[1] == "reboot" and is_sudo(msg) then
-        local s = io.popen("sh /home/blackplus/data/com/upstart.sh") 
+        local s = io.popen("sh /home/blac/data/remind/upstart.sh") 
         return ( s:read("*a") ) 
   elseif matches[1] == "serverinfo" and is_sudo(msg) then
-     local f = io.popen("sh /home/blackplus/data/com/cmd.sh") 
+     local f = io.popen("sh /home/blac/data/remind/cmd.sh") 
      return ( f:read("*a") ) 
   end
 end
