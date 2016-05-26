@@ -1,4 +1,3 @@
-
 local function addword(msg, name)
     local hash = 'chat:'..msg.to.id..':badword'
     redis:hset(hash, name, 'newword')
@@ -84,11 +83,11 @@ local function run(msg, matches)
   if matches[2] == 'badwords' then
   return list_variablesbad(msg)
   elseif matches[2] == 'clearbadwords' then
-if not is_momod(msg) then return '_|_' end
+if not is_momod(msg) then return '👍' end
   local asd = '1'
     return clear_commandbad(msg, asd)
   elseif matches[2] == 'remword' or matches[2] == 'rw' then
-   if not is_momod(msg) then return '_|_' end
+   if not is_momod(msg) then return '👍' end
     return clear_commandsbad(msg, matches[3])
   else
     local name = user_print_name(msg.from)
