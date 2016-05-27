@@ -1712,7 +1712,7 @@ local function run(msg, matches)
 			end
 		end
 
-		if matches[1] == 'id' then
+	if matches[1] == 'id' then
 			if type(msg.reply_id) ~= "nil" and is_momod(msg) and not matches[2] then
 				local cbreply_extra = {
 					get_cmd = 'id',
@@ -1736,10 +1736,8 @@ local function run(msg, matches)
 				resolve_username(username,  callbackres, cbres_extra)
 			else
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested SuperGroup ID")
-				return 
-			end
+				return "> Group ID: "..msg.to.id.."\n> Group Name: "..msg.to.title.."\n> First Name: "..(msg.from.first_name or '').."\n> Last Name: "..(msg.from.last_name or '').."\n> Your ID: "..msg.from.id.."\n> Username: @"..(msg.from.username or '').."\n> Phone Number: +"..(msg.from.phone or '')			end
 		end
-
 		if matches[1] == 'kickme' then
 			if msg.to.type == 'channel' then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] left via kickme")
