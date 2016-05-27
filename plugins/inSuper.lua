@@ -1889,7 +1889,7 @@ local function run(msg, matches)
 				}
 				setowner = get_message(msg.reply_id, get_message_callback, cbreply_extra)
 			elseif matches[1] == 'setowner' and string.match(matches[2], '^%d+$') then
-		--[[	local group_owner = data[tostring(msg.to.id)]['set_owner']
+		[[	local group_owner = data[tostring(msg.to.id)]['set_owner']
 				if group_owner then
 					local receiver = get_receiver(msg)
 					local user_id = "user#id"..group_owner
