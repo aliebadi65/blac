@@ -228,35 +228,6 @@ local function unlock_group_all(msg, data, target)
     return 'all setting has been unlocked'
   end
 end
-
-local function lock_group_etehad(msg, data, target)
-  if not is_momod(msg) then
-    return
-  end
-  local group_etehad_lock = data[tostring(target)]['settings']['etehad']
-  if group_etehad_lock == 'yes' then
-    return 'etehad setting is already locked'
-  else
-    data[tostring(target)]['settings']['etehad'] = 'yes'
-    save_data(_config.moderation.data, data)
-    return 'etehad setting has been locked'
-  end
-end
-
-local function unlock_group_etehad(msg, data, target)
-  if not is_momod(msg) then
-    return
-  end
-  local group_etehad_lock = data[tostring(target)]['settings']['etehad']
-  if group_etehad_lock == 'no' then
-    return 'etehad setting is not locked'
-  else
-    data[tostring(target)]['settings']['etehad'] = 'no'
-    save_data(_config.moderation.data, data)
-    return 'etehad setting has been unlocked'
-  end
-end
-
 local function lock_group_leave(msg, data, target)
   if not is_momod(msg) then
     return
@@ -1025,15 +996,10 @@ function show_supergroup_settingsmod(msg, target)
 			data[tostring(target)]['settings']['operator'] = 'no'
 		end
 	end
-	if data[tostring(target)]['settings'] then
-		if not data[tostring(target)]['settings']['etehad'] then
-			data[tostring(target)]['settings']['etehad'] = 'no'
-		end
-	end
   local gp_type = data[tostring(msg.to.id)]['group_type']
   
   local settings = data[tostring(target)]['settings']
-  local text = "\n____________________\n[⚙SuPeR-GrOuP⚙]\n____________________ \n<>super name : [ " ..string.gsub(msg.to.print_name, "_", " ").." ] \n<>super flood : [ "..NUM_MSG_MAX.." ] \n<>super id : ( "..msg.to.id.. " ) \n<>super Public : "..settings.public.." \n<>type :  ( "..gp_type.." ) \n<>id : ( " ..msg.from.id.. " ) \n<>user : ( @" ..msg.from.username.. " )  \n<>msg : ( " ..msg.text.. " ) \n<>phone : ( +" ..msg.from.phone.. " )\n____________________\n[⚙SeTTiNgS⚙]\n____________________\n<>Lock links : "..settings.lock_link.."\n<>Lock contacts : "..settings.lock_contacts.."\n<>Lock flood : "..settings.flood.."\n<>Flood sensitivity : "..NUM_MSG_MAX.."\n<>Lock spam : "..settings.lock_spam.."\n<>Lock Arabic : "..settings.lock_arabic.."\n<>Lock Member : "..settings.lock_member.."\n<>Lock RTL : "..settings.lock_rtl.."\n<>Lock Tgservice : "..settings.lock_tgservice.."\n<>Lock sticker : "..settings.lock_sticker.."\n<>Lock tag : "..settings.tag.."\n<>Lock emoji : "..settings.emoji.."\n<>Lock english : "..settings.english.."\n<>Lock forward : "..settings.fwd.."\n<>Lock reply : "..settings.reply.."\n<>Lock join : "..settings.join.."\n<>Lock username : "..settings.username.."\n<>Lock media : "..settings.media.."\n<>Lock fosh : "..settings.fosh.."\n<>Lock leave : "..settings.leave.."\n<>Lock bots : "..bots_protection.."\n<>Lock operator : "..settings.operator.."\n<>lock Etehad : "..settings.etehad.."\n<>Lock all : "..settings.all.."\n<>Strict settings : "..settings.strict.."\n____________________\n<>link : ( telegram.me/" ..msg.from.username.. " )\n____________________"
+  local text = "\n____________________\n[⚙SuPeR-GrOuP⚙]\n____________________ \n<>super name : [ " ..string.gsub(msg.to.print_name, "_", " ").." ] \n<>super flood : [ "..NUM_MSG_MAX.." ] \n<>super id : ( "..msg.to.id.. " ) \n<>super Public : "..settings.public.." \n<>type :  ( "..gp_type.." ) \n<>id : ( " ..msg.from.id.. " ) \n<>user : ( @" ..msg.from.username.. " )  \n<>msg : ( " ..msg.text.. " ) \n<>phone : ( +" ..msg.from.phone.. " )\n____________________\n[⚙SeTTiNgS⚙]\n____________________\n<>Lock links : "..settings.lock_link.."\n<>Lock contacts : "..settings.lock_contacts.."\n<>Lock flood : "..settings.flood.."\n<>Flood sensitivity : "..NUM_MSG_MAX.."\n<>Lock spam : "..settings.lock_spam.."\n<>Lock Arabic : "..settings.lock_arabic.."\n<>Lock Member : "..settings.lock_member.."\n<>Lock RTL : "..settings.lock_rtl.."\n<>Lock Tgservice : "..settings.lock_tgservice.."\n<>Lock sticker : "..settings.lock_sticker.."\n<>Lock tag : "..settings.tag.."\n<>Lock emoji : "..settings.emoji.."\n<>Lock english : "..settings.english.."\n<>Lock forward : "..settings.fwd.."\n<>Lock reply : "..settings.reply.."\n<>Lock join : "..settings.join.."\n<>Lock username : "..settings.username.."\n<>Lock media : "..settings.media.."\n<>Lock fosh : "..settings.fosh.."\n<>Lock leave : "..settings.leave.."\n<>Lock bots : "..bots_protection.."\n<>Lock operator : "..settings.operator.."\n<>Lock all : "..settings.all.."\n<>Strict settings : "..settings.strict.."\n____________________\n<>link : ( telegram.me/" ..msg.from.username.. " )\n____________________"
   return text
 end
 
@@ -2138,32 +2104,7 @@ local function run(msg, matches)
       	}
       	return lock_group_all(msg, data, target), safemode
       end
-			     if matches[2] == 'etehad' then
-      	local etehad ={
-        unlock_group_links(msg, data, target),
-		lock_group_tag(msg, data, target),
-		lock_group_spam(msg, data, target),
-		lock_group_flood(msg, data, target),
-		unlock_group_arabic(msg, data, target),
-		lock_group_membermod(msg, data, target),
-		unlock_group_rtl(msg, data, target),
-		lock_group_tgservice(msg, data, target),
-		lock_group_sticker(msg, data, target),
-		unlock_group_contacts(msg, data, target),
-		unlock_group_english(msg, data, target),
-		unlock_group_fwd(msg, data, target),
-		unlock_group_reply(msg, data, target),
-		lock_group_join(msg, data, target),
-		unlock_group_emoji(msg, data, target),
-		unlock_group_username(msg, data, target),
-		lock_group_fosh(msg, data, target),
-		unlock_group_media(msg, data, target),
-		lock_group_leave(msg, data, target),
-		lock_group_bots(msg, data, target),
-		unlock_group_operator(msg, data, target),
-      	}
-      	return lock_group_etehad(msg, data, target), etehad
-      end
+	
 			if matches[2] == 'links' then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked link posting ")
 				return lock_group_links(msg, data, target)
@@ -2282,32 +2223,7 @@ local function run(msg, matches)
       	}
       	return unlock_group_all(msg, data, target), dsafemode
       end
-	  	if matches[2] == 'etehad' then
-      	local detehad ={
-        lock_group_links(msg, data, target),
-		unlock_group_tag(msg, data, target),
-		lock_group_spam(msg, data, target),
-		lock_group_flood(msg, data, target),
-		unlock_group_arabic(msg, data, target),
-		unlock_group_membermod(msg, data, target),
-		unlock_group_rtl(msg, data, target),
-		unlock_group_tgservice(msg, data, target),
-		unlock_group_sticker(msg, data, target),
-		unlock_group_contacts(msg, data, target),
-		unlock_group_english(msg, data, target),
-		unlock_group_fwd(msg, data, target),
-		unlock_group_reply(msg, data, target),
-		unlock_group_join(msg, data, target),
-		unlock_group_emoji(msg, data, target),
-		unlock_group_username(msg, data, target),
-		unlock_group_fosh(msg, data, target),
-		unlock_group_media(msg, data, target),
-		unlock_group_leave(msg, data, target),
-		unlock_group_bots(msg, data, target),
-		unlock_group_operator(msg, data, target),
-      	}
-      	return unlock_group_etehad(msg, data, target), detehad
-      end
+	
 			if matches[2] == 'links' then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked link posting")
 				return unlock_group_links(msg, data, target)
@@ -2744,7 +2660,7 @@ return {
 	"^[#!/]([Rr]ules)$",
 	"^[#!/]([Ss]etflood) (%d+)$",
 	"^[#!/]([Cc]lean) (.*)$",
-	--"^[#!/]([Hh]elp)$",
+	"^[#!/]([Hh]elp)$",
 	"^[#!/]([Mm]uteslist)$",
 	"^[#!/]([Ss]ilentlist)$",
     "[#!/](mp) (.*)",
