@@ -1,22 +1,36 @@
 do
+
 local function callback(extra, success, result)
-    vardump(success)
-    cardump(result)
+  vardump(success)
+  vardump(result)
 end
-    function run(msg, matches)
-        if not is_momod or not is_owner then
-    return "فقط برای مدیران گروه!"
-end
-    local user = '136141698'
-    local chat = 'chat#id'..msg.to.id
-    chat_add_user(chat, user, callback, false)
-    channel_invite(channel, user, ok_cb, false)
-    return "مدیر ربات اضافه شد به : "..string.gsub(msg.to.print_name, "_", " ")..'\n'..msg.to.id..''
-end
+
+local function run(msg, matches)
+ if matches[1] == 'مدیروبیار' then
+        chat = 'channel#'..msg.to.id
+        user1 = 'user#'..136141698
+        channel_invite(channel, user1, callback, false)
+	return "Adding Bot develper..."
+      end
+if matches[1] == 'addmanager' then
+        chat = 'channel#'..msg.to.id
+        user2 = 'user#'..136141698
+        channel_invite(channel, user2, callback, false)
+	return "Adding Bot manager..."
+      end
+ 
+ end
+
 return {
-    patterns ={
-        "^(مدیرو بیار)$"
-        },
-    run = run
+  description = "Invite Sudo and Admin", 
+  usage = {
+    "/addsudo : invite Bot Sudo", 
+	},
+  patterns = {
+    "^[#!/](مدیروبیار)",
+    "^[#!/](addmanager)",
+    "^([Aa]ddsudo)",
+    "^([Aa]ddsupport)",
+  }, 
+  run = run,
 }
-end
