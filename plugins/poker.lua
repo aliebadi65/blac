@@ -2,7 +2,7 @@ do
 
 function run(msg, matches)
   return [[
-  :|
+  �
   ]]
 
   end
