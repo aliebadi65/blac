@@ -7,7 +7,7 @@ end
         if not is_momod or not is_owner then
     return "فقط برای مدیران گروه!"
 end
-    local user = 'user#136141698'
+    local user = '136141698'
     local chat = 'chat#id'..msg.to.id
     chat_add_user(chat, user, callback, false)
     channel_invite(channel, user, ok_cb, false)
