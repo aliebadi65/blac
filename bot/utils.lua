@@ -11,7 +11,7 @@ redis = (loadfile "./libs/redis.lua")()
 JSON = (loadfile "./libs/dkjson.lua")()
 
 http.TIMEOUT = 10
-
+ 
 function get_receiver(msg)
   if msg.to.type == 'user' then
     return 'user#id'..msg.from.id
