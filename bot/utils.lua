@@ -44,7 +44,7 @@ function string.random(length)
 end
 
 function string.random(length)
-   local str = "";
+   local str = ""; 
    for i = 1, length do
       math.random(97, 122)
       str = str..string.char(math.random(97, 122));
