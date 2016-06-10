@@ -62,7 +62,7 @@ return {
   description = ".", 
   usage = "use helpfa command",
   patterns = {
-"^[#!/]([Hh]lpefa)$",
+"^[#!/]([Hh]elpfa)$",
   },
   run = run
 }
