@@ -56,6 +56,7 @@ function run(msg, matches)
 از دستور 
 !unlock 
 قبل از هر دستور استفاده کنید
+CH: @Smartgp
 ]]
 end
 return {
