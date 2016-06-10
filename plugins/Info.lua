@@ -47,7 +47,7 @@ local function res_user_callback(extra, success, result) -- /info <username> fun
   send_msg(extra.receiver, text, ok_cb,  true)
   else
 	send_msg(extra.receiver, extra.user..' نام کاربری مورد نظر یافت نشد.', ok_cb, false)
-  end
+  end 
 end
 
 local function action_by_id(extra, success, result)  -- /info <ID> function
