@@ -5,7 +5,7 @@ if matches[1] then
       end
 end
 if matches[1] then
-return 'مبلغ قابل پرداخت : '..matches[1]..'\nلینک پرداخت شما :\n\nhttp://cruel-plus.ir/reserve.php?buy='..matches[1]..'&id='..msg.from.id
+return 'مبلغ قابل پرداخت : '..matches[1]..'\nلینک پرداخت شما :\n\nhttp://hextor.ir/eserve.php?buy='..matches[1]..'&id='..msg.from.id
 end
 
 end
