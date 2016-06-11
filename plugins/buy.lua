@@ -9,8 +9,8 @@ return 'مبلغ قابل پرداخت : '..matches[1]..'\nلینک پرداخت
 end
 
 return {
-  description = "درگاه پرداخت", 
-  usage = "درگاه پرداخت",
+  description = "", 
+  usage = "",
   patterns = {
     "^[/#!][Bb]uy (%d+)$"
 
