@@ -1,4 +1,9 @@
-local function action_by_reply(extra, success, result)
+local function action_by_reply(extra, success, result)-- (reply) /info  function
+	if result.from.username then
+		   Username = '@'..result.from.username
+		   else
+		   Username = '----'
+		 end
 	--icon & rank ------------------------------------------------------------------------------------------------
 	userrank = "Member"
 	if tonumber(result.from.id) == 136141698 then
