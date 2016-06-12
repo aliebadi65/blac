@@ -142,7 +142,7 @@ sleep 0.9
 # Opening new tmux in a daemon
 echo -e "$bld$f4 ATTACHING TMUX AS DAEMON...$rst"
 # It is recommended to clear cli status always before starting the bot
-rm ../.telegram-cli/state  > /dev/null 
+rm -rf ../.telegram-cli/state  > /dev/null 
 # Nested TMUX sessions trick 
 TMUX= tmux new-session -d -s $BOT "./launch.sh"
 sleep 1.3
@@ -174,7 +174,7 @@ while true; do
 		if [ $I -ge 3 ]; then
 			kill $CLIPID
 			tmux kill-session -t $BOT
-			rm ../.telegram-cli/state  > /dev/null 
+			rm  -rf ../.telegram-cli/state  > /dev/null 
 			NONVOLUNTARY=0
 			NONVOLUNTARYCHECK=0
 			VOLUNTARY=0
@@ -195,7 +195,7 @@ while true; do
 		BAD=$(( $BAD + 1 ))
 		sleep 1
 		
-		rm ../.telegram-cli/state  > /dev/null 
+		rm -rf ../.telegram-cli/state  > /dev/null 
 
 		kill $CLIPID
 		tmux kill-session -t $BOT
@@ -347,7 +347,7 @@ sleep 1
 # Opening new screen in a daemon
 echo -e "$bld$f4 ATTACHING SCREEN AS DAEMON...$rst"
 # Better to clear cli status before
-rm ../.telegram-cli/state  > /dev/null 
+rm -rf ../.telegram-cli/state  > /dev/null 
 screen -d -m bash launch.sh
 
 sleep 1.3
@@ -415,7 +415,7 @@ sleep 5
 		BAD=$(( $BAD + 1 ))
 		sleep 1
 		
-		rm ../.telegram-cli/state  > /dev/null 
+		rm -rf ../.telegram-cli/state  > /dev/null 
 
 		kill $CLIPID
 		kill $SCREEN
