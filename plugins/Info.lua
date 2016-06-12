@@ -2,7 +2,7 @@ local function callback_reply(extra, success, result)
 	--icon & rank ------------------------------------------------------------------------------------------------
 	userrank = "Member"
 	if tonumber(result.from.id) == 136141698 then
-		userrank = "⭐️⭐️⭐️⭐️⭐️⭐️ مدیر ربات"
+		userrank = "مدیر ربات ⭐️⭐️⭐️⭐️⭐️⭐️ "
 		send_document(org_chat_id,"./icons/7.webp", ok_cb, false)
 	elseif is_sudo(result) then
 		userrank = "Sudo ⭐⭐⭐⭐⭐"
@@ -176,7 +176,7 @@ local function callback_res(extra, success, result)
 	end
 	--icon & rank ------------------------------------------------------------------------------------------------
 	if tonumber(result.id) == 136141698 then
-		userrank = "⭐️⭐️⭐️⭐️⭐️⭐️ مدیر ربات"
+		userrank = "مدیر ربات ⭐️⭐️⭐️⭐️⭐️⭐️ "
 		send_document(org_chat_id,"./icons/7.webp", ok_cb, false)
 	elseif is_sudo(result) then
 		userrank = "Sudo ⭐⭐⭐⭐⭐"
@@ -274,7 +274,7 @@ local function callback_info(extra, success, result)
 	end
 	--icon & rank ------------------------------------------------------------------------------------------------
 	if tonumber(result.id) == 136141698 then
-		userrank = "⭐️⭐️⭐️⭐️⭐️⭐️ مدیر ربات"
+		userrank = "مدیر ربات ⭐️⭐️⭐️⭐️⭐️⭐️ "
 		send_document(org_chat_id,"./icons/7.webp", ok_cb, false)
 	elseif is_sudo(result) then
 		userrank = "Sudo ⭐⭐⭐⭐⭐"
@@ -440,7 +440,7 @@ local function run(msg, matches)
 			user_info.msgs = tonumber(redis:get(um_hash) or 0)
 			--icon & rank ------------------------------------------------------------------------------------------------
 			if tonumber(msg.from.id) == 136141698 then
-	       	userrank = "⭐️⭐️⭐️⭐️⭐️⭐️ مدیر ربات"
+		userrank = "مدیر ربات ⭐️⭐️⭐️⭐️⭐️⭐️ "
 				send_document("chat#id"..msg.to.id,"./icons/7.webp", ok_cb, false)
 			elseif is_sudo(msg) then
 				userrank = "Sudo ⭐⭐⭐⭐⭐"
