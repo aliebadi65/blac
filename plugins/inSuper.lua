@@ -1042,7 +1042,7 @@ local function promote2(receiver, member_username, user_id)
   end
   data[group]['moderators'][tostring(user_id)] = member_tag_username
   save_data(_config.moderation.data, data)
-  send_large_msg(receiver, member_username..' has been promoted.')
+  send_large_msg(receiver, member_username..' ترفیع گرفت.')
 end
 
 local function demote2(receiver, member_username, user_id)
