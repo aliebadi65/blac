@@ -4,19 +4,19 @@ local function run(msg, matches)
   if matches[1] == 'me' then
     if is_sudo(msg) then
 	  send_document(get_receiver(msg), "./files/me/sudo.webp", ok_cb, false)
-      return "You're sudo!"
+      return "مدیر ربات"
     elseif is_admin(msg) then
 	  send_document(get_receiver(msg), "./files/me/admin.webp", ok_cb, false)
-      return "You're admin!"
+      return "مدیر گروه"
     elseif is_owner(msg) then
 	  send_document(get_receiver(msg), "./files/me/leader.webp", ok_cb, false)
-      return "You're the Leader!"
+      return "مالک گروه"
     elseif is_momod(msg) then
 	  send_document(get_receiver(msg), "./files/me/moderator.webp", ok_cb, false)
-      return "You're a moderator!"
+      return "مدیر ربات"
     else
 	  send_document(get_receiver(msg), "./files/me/member.webp", ok_cb, false)
-      return "You're just a member!"
+      return "کاربر گروه"
     end
   end
 end
