@@ -661,23 +661,28 @@ if msg.from.phone then
   end
 end
 
-return {
-  description = 'Know your information or the info of a chat members.',
-  usage = {
-    '!info: Return your info and the chat info if you are in one.',
-    '(Reply)!info: Return info of replied user if used by reply.',
-    '!info <id>: Return the info\'s of the <id>.',
-    '!info @<user_name>: Return the member @<user_name> information from the current chat.',
-	'!setrank <userid> <rank>: change members rank.',
-	'(Reply)!setrank <rank>: change members rank.',
-  },
-  patterns = {
-    "^[/#!]([Ii][Nn][Ff][Oo])$",
-    "^[/!#]([Ii][Nn][Ff][Oo]) (.*)$",
-	"^[/!#]([Ss][Ee][Tt][Rr][Aa][Nn][Kk]) (%d+) (.*)$",
-	"^[/!#]([Ss][Ee][Tt][Rr][Aa][Nn][Kk]) (.*)$",
-  },
-  run = run
-}
 
-end
+return {
+	description = "User Infomation",
+	usagehtm = '<tr><td align="center">info</td><td align="right">اطلاعات کاملی را راجبه شما، گروهی که در آن هستید و مقامتان میدهد همچنین با رپلی کردن میتوانید اطلاعات فرد مورد نظر را نیز ببینید</td></tr>'
+	..'<tr><td align="center">/info مقام آیدی</td><td align="right">اعطای مقام به شخص به جر مقامهای اصلی</td></tr>'
+	..'<tr><td align="center">/infodel آیدی</td><td align="right">حذف مقام اعطا شده</td></tr>',
+	usage = {
+		user = {
+			"info: اطلاعات شما",
+			"info (reply): اطلاعات دیگران",
+			},
+		sudo = {
+			"/info (id) (txt) : اعطای مقام",
+			"/infodel : حذف مقام",
+			},
+		},
+	patterns = {
+		"^(/infodel) (.*)$",
+		"^(/info) ([^%s]+) (.*)$",
+		"^([Ii]nfo) (.*)$",
+		"^(info)$",
+		"^(Info)$",
+	},
+	run = run,
+}
