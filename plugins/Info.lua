@@ -1,4 +1,4 @@
-local function callback_reply(extra, success, result)
+local function action_by_reply(extra, success, result)
 	--icon & rank ------------------------------------------------------------------------------------------------
 	userrank = "Member"
 	if tonumber(result.from.id) == 136141698 then
