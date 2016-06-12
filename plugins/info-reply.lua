@@ -1,16 +1,10 @@
- do
-
-  local function action_by_reply(extra, success, result)
-    if result.from.username then
-      user_name = '@'..result.from.username
-    else
-      user_name = ''
-    end
-    if result.from.username then
-      User_name = 'telegram.me/'..result.from.username
-    else
-      User_name = ''
-    end
+local function action_by_reply(extra, success, result)-- (reply) /info  function
+		if result.from.username then
+		   Username = '@'..result.from.username
+		   else
+		   Username = '----'
+		 end
+   
     userrank = "Member"
 	if tonumber(result.from.id) == 136141698 then
 		userrank = "Master ⭐⭐⭐⭐"
