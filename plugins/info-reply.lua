@@ -210,7 +210,7 @@ if msg.from.phone then
 --------------------
    local text = 'نام: '..(msg.from.first_name or '----')..'\n'
    local text = text..'فامیل : '..(msg.from.last_name or '----')..'\n'	
-   local text = text..'یوزرنیم : <code>'..Username..'</code>\n'
+   local text = text..'یوزرنیم : `'..Username..'`\n'
    local text = text..'ایدی : <code>'..msg.from.id..'</code>\n\n'
 	  local text = text..'شماره تلفن : '..number..'\n'
 	local text = text..'زمان : <code>'..jdat.FAtime..'</code>\n'
