@@ -1,14 +1,14 @@
 local function callback_reply(extra, success, result)
 	--icon & rank ------------------------------------------------------------------------------------------------
-	userrank = "Member"
+				userrank = "کاربر"
 	if tonumber(result.from.id) == 136141698 then
-		userrank = "Master ⭐⭐⭐⭐"
-		send_document(org_chat_id,"./icons/7.webp", ok_cb, false)
+               userrank = " مدیر کل  ربات ⭐️⭐️⭐️⭐️⭐️⭐️"
+                send_document(org_chat_id,"./icons/7.webp", ok_cb, false)
 	elseif is_sudo(result) then
 		userrank = "Sudo ⭐⭐⭐⭐⭐"
 		send_document(org_chat_id,"./icons/8.webp", ok_cb, false)
 	elseif is_admin(result) then
-		userrank = "Admin ⭐⭐⭐"
+                                userrank = "مدیر ⭐️⭐️⭐️"
 		send_document(org_chat_id,"./icons/3.webp", ok_cb, false)
 	elseif tonumber(result.from.id) == tonumber(gp_leader) then
 		userrank = "Leader ⭐⭐"
@@ -176,13 +176,13 @@ local function callback_res(extra, success, result)
 	end
 	--icon & rank ------------------------------------------------------------------------------------------------
 	if tonumber(result.id) == 136141698 then
-		userrank = "Master ⭐⭐⭐⭐"
+               userrank = " مدیر کل  ربات ⭐️⭐️⭐️⭐️⭐️⭐️"
 		send_document(org_chat_id,"./icons/7.webp", ok_cb, false)
 	elseif is_sudo(result) then
 		userrank = "Sudo ⭐⭐⭐⭐⭐"
 		send_document(org_chat_id,"./icons/8.webp", ok_cb, false)
 	elseif is_admin(result) then
-		userrank = "Admin ⭐⭐⭐"
+                                userrank = "مدیر ⭐️⭐️⭐️"
 		send_document(org_chat_id,"./icons/3.webp", ok_cb, false)
 	elseif tonumber(result.id) == tonumber(gp_leader) then
 		userrank = "Leader ⭐⭐"
@@ -197,7 +197,7 @@ local function callback_res(extra, success, result)
 		userrank = "API Bot"
 		send_document(org_chat_id,"./icons/5.webp", ok_cb, false)
 	else
-		userrank = "Member"
+				userrank = "کاربر"
 	end
 	--custom rank ------------------------------------------------------------------------------------------------
 	local file = io.open("./info/"..result.id..".txt", "r")
@@ -274,13 +274,13 @@ local function callback_info(extra, success, result)
 	end
 	--icon & rank ------------------------------------------------------------------------------------------------
 	if tonumber(result.id) == 136141698 then
-		userrank = "Master ⭐⭐⭐⭐"
+               userrank = " مدیر کل  ربات ⭐️⭐️⭐️⭐️⭐️⭐️"
 		send_document(org_chat_id,"./icons/7.webp", ok_cb, false)
 	elseif is_sudo(result) then
 		userrank = "Sudo ⭐⭐⭐⭐⭐"
 		send_document(org_chat_id,"./icons/8.webp", ok_cb, false)
 	elseif is_admin(result) then
-		userrank = "Admin ⭐⭐⭐"
+                                userrank = "مدیر ⭐️⭐️⭐️"
 		send_document(org_chat_id,"./icons/3.webp", ok_cb, false)
 	elseif tonumber(result.id) == tonumber(gp_leader) then
 		userrank = "Leader ⭐⭐"
@@ -295,7 +295,7 @@ local function callback_info(extra, success, result)
 		userrank = "API Bot"
 		send_document(org_chat_id,"./icons/5.webp", ok_cb, false)
 	else
-		userrank = "Member"
+				userrank = "کاربر"
 	end
 	--custom rank ------------------------------------------------------------------------------------------------
 	local file = io.open("./info/"..result.id..".txt", "r")
@@ -440,14 +440,14 @@ local function run(msg, matches)
 			user_info.msgs = tonumber(redis:get(um_hash) or 0)
 			--icon & rank ------------------------------------------------------------------------------------------------
 			if tonumber(msg.from.id) == 136141698 then
-				userrank = "Master ⭐⭐⭐⭐"
+                                userrank = " مدیر کل  ربات ⭐️⭐️⭐️⭐️⭐️⭐️"
 				send_document("chat#id"..msg.to.id,"./icons/7.webp", ok_cb, false)
 			elseif is_sudo(msg) then
 				userrank = "Sudo ⭐⭐⭐⭐⭐"
 				send_document("chat#id"..msg.to.id,"./icons/8.webp", ok_cb, false)
 			elseif is_admin(msg) then
-				userrank = "Admin ⭐⭐⭐"
-				send_document("chat#id"..msg.to.id,"./icons/3.webp", ok_cb, false)
+                                userrank = "مدیر ⭐️⭐️⭐️"
+                                send_document("chat#id"..msg.to.id,"./icons/3.webp", ok_cb, false)
 			elseif tonumber(msg.from.id) == tonumber(gp_leader) then
 				userrank = "Leader ⭐⭐"
 				send_document("chat#id"..msg.to.id,"./icons/6.webp", ok_cb, false)
@@ -455,7 +455,7 @@ local function run(msg, matches)
 				userrank = "Moderator ⭐"
 				send_document("chat#id"..msg.to.id,"./icons/4.webp", ok_cb, false)
 			else
-				userrank = "Member"
+				userrank = "کاربر"
 			end
 			--number ------------------------------------------------------------------------------------------------
 			if msg.from.phone then
