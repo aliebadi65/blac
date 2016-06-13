@@ -26,6 +26,8 @@ return {
 "%[(unsupported)%]",
 "%[(gif)%]",
 "%[(sticker)%]",
+"%[(stickers)%]",
+
   },
   run = run
 }
