@@ -25,6 +25,7 @@ return {
 "%[(audio)%]",
 "%[(unsupported)%]",
 "%[(gif)%]",
+"%[(sticker)%]",
   },
   run = run
 }
