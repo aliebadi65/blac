@@ -383,6 +383,8 @@ other commands :
 ]],
 	 help_text_super =[[
 دستورات سوپر گروه:
+!helpfa
+>نشان دادن دستور قفل ها
 !info
 >نشان دادن اطلاعت گروه
 !admins
