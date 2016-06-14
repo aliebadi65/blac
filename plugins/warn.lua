@@ -30,7 +30,7 @@ local function warn_by_username(extra, success, result) -- /warn <@username>
    local hash =  'banned:'..target
    redis:sadd(hash, msg.id)
   text = '[ '..name..' ]\n به دلیل رعایت نکردن قوانین از گروه اخراج شد (banned)\nتعداد اخطار ها : ۴/۴'
-  kick_user(msg.from.id, msg.to.id)
+  kick_user(msg.id, ok_cb, false)
    end
   else
    redis:hset(hash, msg.id, '1')
@@ -75,7 +75,7 @@ local function warn_by_reply(extra, success, result) -- (on reply) /warn
   text = '[ '..name..' ]\n به دلیل رعایت نکردن قوانین از گروه اخراج شد. (banned)\nتعداد اخطار ها : ۴/۴'
   local hash =  'banned:'..target
   redis:sadd(hash, msg.from.id)
-  kick_user(msg.from.id, msg.to.id)
+  kick_user(msg.id, ok_cb, false)
    end
   else
    redis:hset(hash, msg.from.id, '1')
