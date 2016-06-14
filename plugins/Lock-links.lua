@@ -5,14 +5,14 @@ local function run(msg, matches)
     local data = load_data(_config.moderation.data)
     if data[tostring(msg.to.id)] then
         if data[tostring(msg.to.id)]['settings'] then
-            if data[tostring(msg.to.id)]['settings']['media'] then
-                lock_media = data[tostring(msg.to.id)]['settings']['media']
+            if data[tostring(msg.to.id)]['settings']['ch'] then
+                lock_ch = data[tostring(msg.to.id)]['settings']['ch']
             end
         end
     end
     local chat = get_receiver(msg)
     local user = "user#id"..msg.from.id
-    if lock_media == "yes" then
+    if lock_ch == "yes" then
        delete_msg(msg.id, ok_cb, true)
     end
 end
