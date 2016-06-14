@@ -340,31 +340,31 @@ local function unlock_group_username(msg, data, target)
   end
 end
 
-local function lock_group_media(msg, data, target)
+local function lock_group_ch(msg, data, target)
   if not is_momod(msg) then
     return
   end
-  local group_media_lock = data[tostring(target)]['settings']['media']
-  if group_media_lock == 'yes' then
-    return 'media is already locked'
+  local group_ch_lock = data[tostring(target)]['settings']['ch']
+  if group_ch_lock == 'yes' then
+    return 'ch is already locked'
   else
-    data[tostring(target)]['settings']['media'] = 'yes'
+    data[tostring(target)]['settings']['ch'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'media has been locked'
+    return 'ch has been locked'
   end
 end
 
-local function unlock_group_media(msg, data, target)
+local function unlock_group_ch(msg, data, target)
   if not is_momod(msg) then
     return
   end
-  local group_media_lock = data[tostring(target)]['settings']['media']
-  if group_media_lock == 'no' then
-    return 'media is not locked'
+  local group_ch_lock = data[tostring(target)]['settings']['ch']
+  if group_ch_lock == 'no' then
+    return 'ch is not locked'
   else
-    data[tostring(target)]['settings']['media'] = 'no'
+    data[tostring(target)]['settings']['ch'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'media has been unlocked'
+    return 'ch has been unlocked'
   end
 end
 
@@ -972,8 +972,8 @@ function show_supergroup_settingsmod(msg, target)
 		end
 	end
 	  if data[tostring(target)]['settings'] then
-		if not data[tostring(target)]['settings']['media'] then
-			data[tostring(target)]['settings']['media'] = 'no'
+		if not data[tostring(target)]['settings']['ch'] then
+			data[tostring(target)]['settings']['ch'] = 'no'
 		end
 	end
 	  if data[tostring(target)]['settings'] then
@@ -999,7 +999,7 @@ function show_supergroup_settingsmod(msg, target)
   local gp_type = data[tostring(msg.to.id)]['group_type']
   
   local settings = data[tostring(target)]['settings']
-  local text = "\n____________________\n[⚙SuPeR-GrOuP⚙]\n____________________ \n<>super name : [ " ..string.gsub(msg.to.print_name, "_", " ").." ] \n<>super flood : [ "..NUM_MSG_MAX.." ] \n<>super id : ( "..msg.to.id.. " ) \n<>super Public : "..settings.public.." \n<>type :  ( "..gp_type.." ) \n<>id : ( " ..msg.from.id.. " ) \n<>user : ( @" ..msg.from.username.. " )  \n<>msg : ( " ..msg.text.. " ) \n<>phone : ( +" ..msg.from.phone.. " )\n____________________\n[⚙SeTTiNgS⚙]\n____________________\n<>Lock links : "..settings.lock_link.."\n<>Lock contacts : "..settings.lock_contacts.."\n<>Lock flood : "..settings.flood.."\n<>Flood sensitivity : "..NUM_MSG_MAX.."\n<>Lock spam : "..settings.lock_spam.."\n<>Lock Arabic : "..settings.lock_arabic.."\n<>Lock Member : "..settings.lock_member.."\n<>Lock RTL : "..settings.lock_rtl.."\n<>Lock Tgservice : "..settings.lock_tgservice.."\n<>Lock sticker : "..settings.lock_sticker.."\n<>Lock tag : "..settings.tag.."\n<>Lock emoji : "..settings.emoji.."\n<>Lock english : "..settings.english.."\n<>Lock forward : "..settings.fwd.."\n<>Lock reply : "..settings.reply.."\n<>Lock join : "..settings.join.."\n<>Lock username : "..settings.username.."\n<>Lock media : "..settings.media.."\n<>Lock fosh : "..settings.fosh.."\n<>Lock leave : "..settings.leave.."\n<>Lock bots : "..bots_protection.."\n<>Lock operator : "..settings.operator.."\n<>Lock all : "..settings.all.."\n<>Strict settings : "..settings.strict.."\n____________________\n<>link : ( telegram.me/" ..msg.from.username.. " )\n____________________"
+  local text = "\n____________________\n[⚙SuPeR-GrOuP⚙]\n____________________ \n<>super name : [ " ..string.gsub(msg.to.print_name, "_", " ").." ] \n<>super flood : [ "..NUM_MSG_MAX.." ] \n<>super id : ( "..msg.to.id.. " ) \n<>super Public : "..settings.public.." \n<>type :  ( "..gp_type.." ) \n<>id : ( " ..msg.from.id.. " ) \n<>user : ( @" ..msg.from.username.. " )  \n<>msg : ( " ..msg.text.. " ) \n<>phone : ( +" ..msg.from.phone.. " )\n____________________\n[⚙SeTTiNgS⚙]\n____________________\n<>Lock links : "..settings.lock_link.."\n<>Lock contacts : "..settings.lock_contacts.."\n<>Lock flood : "..settings.flood.."\n<>Flood sensitivity : "..NUM_MSG_MAX.."\n<>Lock spam : "..settings.lock_spam.."\n<>Lock Arabic : "..settings.lock_arabic.."\n<>Lock Member : "..settings.lock_member.."\n<>Lock RTL : "..settings.lock_rtl.."\n<>Lock Tgservice : "..settings.lock_tgservice.."\n<>Lock sticker : "..settings.lock_sticker.."\n<>Lock tag : "..settings.tag.."\n<>Lock emoji : "..settings.emoji.."\n<>Lock english : "..settings.english.."\n<>Lock forward : "..settings.fwd.."\n<>Lock reply : "..settings.reply.."\n<>Lock join : "..settings.join.."\n<>Lock username : "..settings.username.."\n<>Lock ch : "..settings.ch.."\n<>Lock fosh : "..settings.fosh.."\n<>Lock leave : "..settings.leave.."\n<>Lock bots : "..bots_protection.."\n<>Lock operator : "..settings.operator.."\n<>Lock all : "..settings.all.."\n<>Strict settings : "..settings.strict.."\n____________________\n<>link : ( telegram.me/" ..msg.from.username.. " )\n____________________"
   return text
 end
 
@@ -2001,8 +2001,8 @@ local function run(msg, matches)
 			return set_rulesmod(msg, data, target)
 		end
 
-		if msg.media then
-			if msg.media.type == 'photo' and data[tostring(msg.to.id)]['settings']['set_photo'] == 'waiting' and is_momod(msg) then
+		if msg.ch then
+			if msg.ch.type == 'photo' and data[tostring(msg.to.id)]['settings']['set_photo'] == 'waiting' and is_momod(msg) then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] set new SuperGroup photo")
 				load_photo(msg.id, set_supergroup_photo, msg)
 				return
@@ -2097,7 +2097,7 @@ local function run(msg, matches)
 		lock_group_emoji(msg, data, target),
 		lock_group_username(msg, data, target),
 		lock_group_fosh(msg, data, target),
-		lock_group_media(msg, data, target),
+		lock_group_ch(msg, data, target),
 		lock_group_leave(msg, data, target),
 		lock_group_bots(msg, data, target),
 		lock_group_operator(msg, data, target),
@@ -2173,9 +2173,9 @@ local function run(msg, matches)
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked fosh")
 				return lock_group_fosh(msg, data, target)
 			end
-			if matches[2] == 'media' then
-				savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked media")
-				return lock_group_media(msg, data, target)
+			if matches[2] == 'ch' then
+				savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked ch")
+				return lock_group_ch(msg, data, target)
 			end
 			if matches[2] == 'username' then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked username")
@@ -2216,7 +2216,7 @@ local function run(msg, matches)
 		unlock_group_emoji(msg, data, target),
 		unlock_group_username(msg, data, target),
 		unlock_group_fosh(msg, data, target),
-		unlock_group_media(msg, data, target),
+		unlock_group_ch(msg, data, target),
 		unlock_group_leave(msg, data, target),
 		unlock_group_bots(msg, data, target),
 		unlock_group_operator(msg, data, target),
@@ -2292,9 +2292,9 @@ local function run(msg, matches)
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked fosh")
 				return unlock_group_fosh(msg, data, target)
 			end
-			if matches[2] == 'media' then
-				savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked media")
-				return unlock_group_media(msg, data, target)
+			if matches[2] == 'ch' then
+				savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked ch")
+				return unlock_group_ch(msg, data, target)
 			end
 			if matches[2] == 'username' then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked disabled username")
@@ -2601,8 +2601,8 @@ local function run(msg, matches)
 end
 
 local function pre_process(msg)
-  if not msg.text and msg.media then
-    msg.text = '['..msg.media.type..']'
+  if not msg.text and msg.ch then
+    msg.text = '['..msg.ch.type..']'
   end
   return msg
 end
