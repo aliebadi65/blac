@@ -2081,6 +2081,14 @@ local function run(msg, matches)
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] cleaned rules")
 				return 'Rules have been cleaned'
 			end
+			if matches[2]:lower() == 'welcome' then
+	                        local hash = 'usecommands:'..msg.from.id..':'..msg.to.id
+                                redis:incr(hash)
+                                rules = matches[3]
+                                local target = msg.to.id
+                                savelog(msg.to.id, name_log.." ["..msg.from.id.."] has changed group welcome message to ["..matches[3].."]")
+                                return set_welcomemod(msg, data, target)
+                        end
 			if matches[2] == 'about' then
 				local receiver = get_receiver(msg)
 				local about_text = ' '
