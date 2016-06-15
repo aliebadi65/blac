@@ -651,7 +651,10 @@ local function lock_group_membermod(msg, data, target)
   end
   return 'SuperGroup members has been locked'
 end
-
+local Welcome = "✅"
+    if  data[tostring(msg.to.id)]['welcome'] then
+    Welcome = data[tostring(msg.to.id)]['welcome']
+    end
 local function unlock_group_membermod(msg, data, target)
   if not is_momod(msg) then
     return
@@ -721,7 +724,33 @@ local function unlock_group_tgservice(msg, data, target)
     return 'Tgservice has been unlocked'
   end
 end
+local function lock_group_welcome(msg, data, target)
+      if not is_momod(msg) then
+        return "شما مدیر گروه نیستید"
+      end
+  local welcoms = data[tostring(target)]['welcome']
+  if welcoms == '✅' then
+    return 'پیام خوش امد گویی فعال است'
+  else
+    data[tostring(target)]['welcome'] = '✅'
+    save_data(_config.moderation.data, data)
+    return 'پیام خوش امد گویی فعال شد\nبرای تغییر این پیام از دستور زیر استفاده کنید\n/set welcome <welcomemsg>'
+  end
+end
 
+local function unlock_group_welcome(msg, data, target)
+      if not is_momod(msg) then
+        return "شما مدیر گروه نیستید"
+      end
+  local welcoms = data[tostring(target)]['welcome']
+  if welcoms == '❌' then
+    return 'پیام خوش امد گویی غیر فعال است'
+  else
+    data[tostring(target)]['welcome'] = '❌'
+    save_data(_config.moderation.data, data)
+    return 'پیام خوش امد گویی غیر فعال شد'
+  end
+end
 local function lock_group_sticker(msg, data, target)
   if not is_momod(msg) then
     return
@@ -748,6 +777,15 @@ local function unlock_group_sticker(msg, data, target)
     save_data(_config.moderation.data, data)
     return '*Sticker posting has been unlocked'
   end
+end
+local function set_welcomemod(msg, data, target)
+      if not is_momod(msg) then
+        return "شما مدیر گروه نیستید"
+      end
+  local data_cat = 'welcome_msg'
+  data[tostring(target)][data_cat] = rules
+  save_data(_config.moderation.data, data)
+  return 'پیام خوش امد گویی :\n'..rules..'\n---------------\nبرای نمایش نام کاربر و نام گروه یا قوانین  میتوانید به صورت زیر عمل کنید\n\n /set welcome salam {name} be goroohe {group} khosh amadid \n ghavanine gorooh: {rules} \n\nربات به صورت هوشمند نام گروه , نام کاربر و قوانین را به جای {name}و{group} و {rules} اضافه میکند.'
 end
 
 local function lock_group_bots(msg, data, target)
@@ -985,7 +1023,7 @@ function show_supergroup_settingsmod(msg, target)
 		if not data[tostring(target)]['settings']['lock_member'] then
 			data[tostring(target)]['settings']['lock_member'] = 'no'
 		end
-	end
+end
 	if data[tostring(target)]['settings'] then
 		if not data[tostring(target)]['settings']['all'] then
 			data[tostring(target)]['settings']['all'] = 'no'
@@ -2268,6 +2306,21 @@ local function run(msg, matches)
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked contact posting")
 				return unlock_group_contacts(msg, data, target)
 			end
+			if matches[1]:lower() == 'welcome' then
+      local target = msg.to.id
+      if matches[2]:lower() == 'enable' then
+	  local hash = 'usecommands:'..msg.from.id..':'..msg.to.id
+    redis:incr(hash)
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked welcome ")
+        return lock_group_welcome(msg, data, target)
+      end
+	if matches[2]:lower() == 'disable' then
+	  local hash = 'usecommands:'..msg.from.id..':'..msg.to.id
+    redis:incr(hash)
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked welcome ")
+        return unlock_group_welcome(msg, data, target)
+      end
+	end
 			if matches[2] == 'strict' then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked disabled strict settings")
 				return disable_strict_rules(msg, data, target)
@@ -2665,6 +2718,7 @@ return {
 	"^[#!/]([Ss]ilentlist)$",
     "[#!/](mp) (.*)",
 	"[#!/](md) (.*)",
+	"^[!/]([Ww]elcome) (.*)$",
     "^(https://telegram.me/joinchat/%S+)$",
 	"msg.to.peer_id",
 	"%[(document)%]",
