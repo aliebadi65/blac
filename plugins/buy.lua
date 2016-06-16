@@ -7,7 +7,7 @@ end
 if matches[1] then
 return 'مبلغ قابل پرداخت : '..matches[1]..'\nلینک پرداخت شما :\n\nhttp://hextor.ir/buy/buy/request.php?1000='..matches[1]..'&id='..msg.from.id
 end
-
+end
 return {
   description = "درگاه پرداخت", 
   usage = "درگاه پرداخت",
