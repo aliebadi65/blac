@@ -1,7 +1,7 @@
 local api_key = '148187853:AAGBhINX4iwDCZFDLTue8iRrlrx00Rud8GQ' --توکن ربات خود را اینجا قرار دهید
 local function run(msg,matches)
     local text = '🔰CRUEL ANTI SPAM BOT🔰'
-    local channel_id = @smartgp
+    local channel_id = '@smartgp'
     local link_text = 'ورود به ساپورت ربات کرول'
     local data = load_data(_config.moderation.data)
     local link = data[tostring(1063179906)]['settings']['set_link'] --ایدی ساپورت خود را با این ایدی عوض کنید
