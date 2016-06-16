@@ -34,9 +34,9 @@ local function warn_by_username(extra, success, result) -- /warn <@username>
 ----------------------------------
   if is_momod2(msg.id, target) and not is_admin2(extra.fromid) then
   return send_msg(receiver, 'شما نمیتوانید به مدیر گروه اخطار بدهید!', ok_cb, false) end
---endif--
+end
   if is_admin2(msg.id) then return send_msg(receiver, 'شما نمیتوانید به ادمین ربات اخطار بدهید!', ok_cb, false) end
---endif--
+end
   if value then
    if value == '1' then
     redis:hset(hash, msg.id, '2')
@@ -79,9 +79,9 @@ local function warn_by_reply(extra, success, result) -- (on reply) /warn
 ----------------------------------
   if is_momod2(msg.from.id, msg.to.id) and not is_admin2(extra.fromid) then
   return send_msg(receiver, 'شما نمیتوانید به مدیر گروه اخطار بدهید!', ok_cb, false) end
---endif--
+end
   if is_admin2(msg.from.id) then return send_msg(receiver, 'شما نمیتوانید به ادمین ربات اخطار بدهید!', ok_cb, false) end
---endif--
+end
   if value then
    if value == '1' then
     redis:hset(hash, msg.from.id, '2')
@@ -115,9 +115,9 @@ local function unwarn_by_username(extra, success, result) -- /unwarn <@username>
   local text = ''
 ----------------------------------
   if is_momod2(msg.id, target) and not is_admin2(extra.fromid) then return end
---endif--
+end
   if is_admin2(msg.id) then return end
---endif--
+end
   if value then
   redis:hdel(hash, msg.id, '0')
   text = 'اخطار های کاربر ('..msg.id..') پاک شد\nتعداد اخطار ها : ۰/۴'
@@ -142,9 +142,9 @@ local function unwarn_by_reply(extra, success, result) -- (on reply) /unwarn
 ----------------------------------
   if is_momod2(msg.from.id, msg.to.id) and not is_admin2(extra.fromid) then
   return end
---endif--
+end
   if is_admin2(msg.from.id) then return end
---endif--
+end
   if value then
   redis:hdel(hash, msg.from.id, '0')
   text = 'اخطار های کاربر ('..msg.from.id..') پاک شد\nتعداد اخطار ها : ۰/۴'
@@ -163,16 +163,16 @@ local function run(msg, matches)
  local target = msg.to.id
  local receiver = get_receiver(msg)
  if msg.to.type == 'user' then return end
- --endif--
+ end
  if not is_momod(msg) then return 'شما مدیر نیستید' end
- --endif--
+ end
  ----------------------------------
  if matches[1]:lower() == 'warn' and not matches[2] then -- (on reply) /warn
   if msg.reply_id then
     local Reply = msg.reply_id
     msgr = get_message(msg.reply_id, warn_by_reply, {receiver=receiver, Reply=Reply, target=target, fromid=fromid})
   else return 'از نام کاربری یا ریپلی کردن پیام کاربر برای اخطار دادن استفاده کنید' end
- --endif--
+ end
  end
  if matches[1]:lower() == 'warn' and matches[2] then -- /warn <@username>
    if string.match(user, '^%d+$') then
@@ -187,7 +187,7 @@ local function run(msg, matches)
     local Reply = msg.id
     msgr = get_message(msg.reply_id, unwarn_by_reply, {receiver=receiver, Reply=Reply, target=target, fromid=fromid})
   else return 'از نام کاربری یا ریپلی کردن استفاده کنید' end
- --endif--
+ end
  end
  if matches[1]:lower() == 'unwarn' and matches[2] then -- /unwarn <@username>
    if string.match(user, '^%d+$') then
