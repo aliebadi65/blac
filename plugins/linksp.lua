@@ -1,6 +1,6 @@
 local api_key = '148187853:AAGBhINX4iwDCZFDLTue8iRrlrx00Rud8GQ' --توکن ربات خود را اینجا قرار دهید
 local function run(msg,matches)
-    local text = '🔰CRUEL ANTI SPAM BOT🔰'
+    local text = '🔰SMART ANTI SPAM BOT🔰'
     local channel_id = '@smartgp'-- در اینجا ایدی کانال خود را قرار دهید
     local link_text = 'ورود به ساپورت ربات اسمارت'
     local data = load_data(_config.moderation.data)
