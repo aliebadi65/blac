@@ -1263,4 +1263,4 @@ function send_api_msg(msg, receiver, text, disable_web_page_preview, markdown)
   if res == 400 then
     reply_msg(msg.id, 'Error 400.\nWhat ever that means...', ok_cb, true)
   end
-end
+end 
