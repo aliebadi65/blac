@@ -1,4 +1,4 @@
-local api_key = '148187853:AAGBhINX4iwDCZFDLTue8iRrlrx00Rud8GQ' --توکن ربات خود را اینجا قرار دهید
+local api_key = '188489357:AAGZ2S3q3TlM6c3qGIlIdv1mUDh5nIN-Hfg' --توکن ربات خود را اینجا قرار دهید
 local function run(msg,matches)
     local text = '🔰SMART ANTI SPAM BOT🔰'
     local channel_id = get_receiver_api(msg) -- در اینجا ایدی کانال خود را قرار دهید
