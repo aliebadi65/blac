@@ -20,7 +20,7 @@ local function check_member_super(cb_extra, success, result)
           set_name = string.gsub(msg.to.title, '_', ' '),
 		  lock_arabic = 'no',
 		  lock_link = "no",
-          flood = 'yes',
+                  flood = 'yes',
 		  lock_spam = 'yes',
 		  lock_sticker = 'no',
 		  member = 'no',
@@ -1203,10 +1203,10 @@ function get_message_callback(extra, success, result)
 		member_username = '@'.. result.from.username
     end
 		local member_id = result.from.peer_id
-		--local user = "user#id"..result.peer_id
+		local user = "user#id"..result.peer_id
 		savelog(msg.to.id, name_log.." ["..msg.from.id.."] demoted mod: @"..member_username.."["..user_id.."] by reply")
 		demote2("channel#id"..result.to.peer_id, member_username, member_id)
-		--channel_demote(channel_id, user, ok_cb, false)
+		channel_demote(channel_id, user, ok_cb, false)
 	elseif get_cmd == 'mute_user' then
 		if result.service then
 			local action = result.action.type
@@ -1244,7 +1244,7 @@ local function cb_user_info(extra, success, result)
 	local user_id = result.peer_id
 	local get_cmd = extra.get_cmd
 	local data = load_data(_config.moderation.data)
-	--[[if get_cmd == "setadmin" then
+	if get_cmd == "setadmin" then
 		local user_id = "user#id"..result.peer_id
 		channel_set_admin(receiver, user_id, ok_cb, false)
 		if result.username then
@@ -1252,7 +1252,7 @@ local function cb_user_info(extra, success, result)
 		else
 			text = "[ "..result.peer_id.." ] has been set as an admin"
 		end
-			send_large_msg(receiver, text)]]
+			send_large_msg(receiver, text)
 	if get_cmd == "demoteadmin" then
 		if is_admin2(result.peer_id) then
 			return send_large_msg(receiver, "You can't demote global admins!")
@@ -1303,7 +1303,7 @@ local function callbackres(extra, success, result)
     local receiver = extra.channel
     local user_id = "user#id"..result.peer_id
     channel_invite(receiver, user_id, ok_cb, false)
-	--[[elseif get_cmd == "channel_block" then
+	elseif get_cmd == "channel_block" then
 		local user_id = result.peer_id
 		local channel_id = extra.channelid
     local sender = extra.sender
@@ -1349,13 +1349,13 @@ local function callbackres(extra, success, result)
 			text = "[ "..result.peer_id.." ] added as owner"
 		end
 		send_large_msg(receiver, text)
-  end]]
+  end
 	elseif get_cmd == "promote" then
 		local receiver = extra.channel
 		local user_id = result.peer_id
-		--local user = "user#id"..result.peer_id
+		local user = "user#id"..result.peer_id
 		promote2(receiver, member_username, user_id)
-		--channel_set_mod(receiver, user, ok_cb, false)
+		channel_set_mod(receiver, user, ok_cb, false)
 	elseif get_cmd == "demote" then
 		local receiver = extra.channel
 		local user_id = result.peer_id
@@ -1649,19 +1649,19 @@ local function run(msg, matches)
 				}
 				get_message(msg.reply_id, get_message_callback, cbreply_extra)
 			elseif matches[1] == 'block' or matches[1] == 'kick' and string.match(matches[2], '^%d+$') then
-				--[[local user_id = matches[2]
+				local user_id = matches[2]
 				local channel_id = msg.to.id
 				if is_momod2(user_id, channel_id) and not is_admin2(user_id) then
 					return send_large_msg(receiver, "You can't kick mods/owner/admins")
 				end
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] kicked: [ user#id"..user_id.." ]")
-				kick_user(user_id, channel_id)]]
+				kick_user(user_id, channel_id)
 				local	get_cmd = 'channel_block'
 				local	msg = msg
 				local user_id = matches[2]
 				channel_get_users (receiver, in_channel_cb, {get_cmd=get_cmd, receiver=receiver, msg=msg, user_id=user_id})
 			elseif msg.text:match("@[%a%d]") then
-			--[[local cbres_extra = {
+			local cbres_extra = {
 					channelid = msg.to.id,
 					get_cmd = 'channel_block',
 					sender = msg.from.id
@@ -1669,7 +1669,7 @@ local function run(msg, matches)
 			    local username = matches[2]
 				local username = string.gsub(matches[2], '@', '')
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] kicked: @"..username)
-				resolve_username(username, callbackres, cbres_extra)]]
+				resolve_username(username, callbackres, cbres_extra)
 			local get_cmd = 'channel_block'
 			local msg = msg
 			local username = matches[2]
@@ -1776,11 +1776,11 @@ local function run(msg, matches)
 			resolve_username(username,  callbackres, cbres_extra)
 		end
 
-		--[[if matches[1] == 'kick' and is_momod(msg) then
+		if matches[1] == 'kick' and is_momod(msg) then
 			local receiver = channel..matches[3]
 			local user = "user#id"..matches[2]
 			chaannel_kick(receiver, user, ok_cb, false)
-		end]]
+		end
 
 			if matches[1] == 'setadmin' then
 				if not is_support(msg.from.id) and not is_owner(msg) then
@@ -1793,23 +1793,23 @@ local function run(msg, matches)
 				}
 				setadmin = get_message(msg.reply_id, get_message_callback, cbreply_extra)
 			elseif matches[1] == 'setadmin' and string.match(matches[2], '^%d+$') then
-			--[[]	local receiver = get_receiver(msg)
+				local receiver = get_receiver(msg)
 				local user_id = "user#id"..matches[2]
 				local get_cmd = 'setadmin'
-				user_info(user_id, cb_user_info, {receiver = receiver, get_cmd = get_cmd})]]
+				user_info(user_id, cb_user_info, {receiver = receiver, get_cmd = get_cmd})
 				local	get_cmd = 'setadmin'
 				local	msg = msg
 				local user_id = matches[2]
 				channel_get_users (receiver, in_channel_cb, {get_cmd=get_cmd, receiver=receiver, msg=msg, user_id=user_id})
 			elseif matches[1] == 'setadmin' and not string.match(matches[2], '^%d+$') then
-				--[[local cbres_extra = {
+				local cbres_extra = {
 					channel = get_receiver(msg),
 					get_cmd = 'setadmin'
 				}
 				local username = matches[2]
 				local username = string.gsub(matches[2], '@', '')
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] set admin @"..username)
-				resolve_username(username, callbackres, cbres_extra)]]
+				resolve_username(username, callbackres, cbres_extra)
 				local	get_cmd = 'setadmin'
 				local	msg = msg
 				local username = matches[2]
@@ -1853,7 +1853,7 @@ local function run(msg, matches)
 				}
 				setowner = get_message(msg.reply_id, get_message_callback, cbreply_extra)
 			elseif matches[1] == 'setowner' and string.match(matches[2], '^%d+$') then
-		--[[	local group_owner = data[tostring(msg.to.id)]['set_owner']
+			local group_owner = data[tostring(msg.to.id)]['set_owner']
 				if group_owner then
 					local receiver = get_receiver(msg)
 					local user_id = "user#id"..group_owner
@@ -1867,7 +1867,7 @@ local function run(msg, matches)
 					savelog(msg.to.id, name_log.." ["..msg.from.id.."] set ["..matches[2].."] as owner")
 					local text = "[ "..matches[2].." ] added as owner"
 					return text
-				end]]
+				end
 				local	get_cmd = 'setowner'
 				local	msg = msg
 				local user_id = matches[2]
