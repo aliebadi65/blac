@@ -228,7 +228,7 @@ function create_config( )
     "updater",
     "inAdmin"
     },
-    sudo_users = {136141698,203865460},--Sudo users
+    sudo_users = {136141698},--Sudo users
     moderation = {data = 'data/moderation.json'},
     about_text =[[Smart v3.8
 Admins
